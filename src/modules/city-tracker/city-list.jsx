@@ -1,25 +1,26 @@
 import React from 'react';
+import {List, ListItem} from 'material-ui/List';
 import City from './city';
-
 
 function NoCity() {
     return (
-        <div className="city-name no-city">No Cities</div>
+        <ListItem className="city-name no-city" disabled>No Cities</ListItem>
     );
 }
 
-export default function CityList({cities, handleSelect}) {
+export default function CityList({cities, handleSelect, manualMove}) {
+    console.log(cities);
     const cityComponents = cities.map((city) => {
-        return (<City city={city} key={city.name} handleSelect={handleSelect}/>);
+        return (<City city={city} key={city.name} handleSelect={handleSelect} manualMove={manualMove}/>);
     });
 
     const noCities = cityComponents.length === 0 ? (
         <NoCity/>
     ) : null;
     return (
-        <div className="city-list">
+        <List className="city-list">
             {cityComponents}
             {noCities}
-        </div>
+        </List>
     );
 }

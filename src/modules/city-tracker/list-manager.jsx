@@ -39,12 +39,12 @@ export default class ListManager extends React.Component {
     }
 
     render() {
-        const {list, title, showAll, handleSelect} = this.props;
+        const {list, title, showAll, handleSelect, manualMove} = this.props;
         const {filter, searchText} = this.state;
 
         const filteredList = filter !== '' ? new Fuse(list, OPTIONS).search(filter): list;
         const body = showAll || filter !== '' ? (
-            <CityList cities={filteredList} handleSelect={handleSelect}/>
+            <CityList cities={filteredList} handleSelect={handleSelect} manualMove={manualMove}/>
         ) : null;
 
         return (
