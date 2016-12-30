@@ -4,6 +4,7 @@ import {Row, Col} from 'react-bootstrap';
 import AppBar from 'material-ui/AppBar';
 import Paper from 'material-ui/Paper';
 import RaisedButton from 'material-ui/RaisedButton';
+import IconButton from 'material-ui/IconButton';
 import ListManager from './list-manager';
 
 import {cities} from '../../cities';
@@ -81,7 +82,7 @@ export default class CityTracker extends React.Component {
 
         return (
             <div>
-                <AppBar title="Pandegacy"/>
+                <AppBar title="Pandegacy" iconElementLeft={<IconButton><i className="material-icons">fingerprint</i></IconButton>}/>
                 <div className="container">
                     <Paper zDepth={2} >
                         <div className="container">

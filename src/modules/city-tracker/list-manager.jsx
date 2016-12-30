@@ -12,6 +12,7 @@ const OPTIONS = {
     minMatchCharLength: 1,
     keys: [
         "name",
+        "color"
     ]
 };
 
