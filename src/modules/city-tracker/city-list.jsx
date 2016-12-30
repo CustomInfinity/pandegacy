@@ -8,14 +8,19 @@ function NoCity() {
     );
 }
 
-export default function CityList({cities, handleSelect, manualMove}) {
-    console.log(cities);
+function MoreCities() {
+    return (
+        <ListItem className="city-name more-cities" disabled>Search to find Cities...</ListItem>
+    );
+}
+
+export default function CityList({cities, handleSelect, manualMove, showAll}) {
     const cityComponents = cities.map((city) => {
         return (<City city={city} key={city.name} handleSelect={handleSelect} manualMove={manualMove}/>);
     });
 
     const noCities = cityComponents.length === 0 ? (
-        <NoCity/>
+        showAll ? ( <NoCity/> ) : ( <MoreCities/> )
     ) : null;
     return (
         <List className="city-list">

@@ -1,5 +1,6 @@
 import React from 'react';
 import Fuse from 'fuse.js';
+import TextField from 'material-ui/TextField';
 import CityList from './city-list';
 
 const OPTIONS = {
@@ -43,15 +44,22 @@ export default class ListManager extends React.Component {
         const {filter, searchText} = this.state;
 
         const filteredList = filter !== '' ? new Fuse(list, OPTIONS).search(filter): list;
-        const body = showAll || filter !== '' ? (
-            <CityList cities={filteredList} handleSelect={handleSelect} manualMove={manualMove}/>
-        ) : null;
+        const displayList = showAll || filter !== '' ? filteredList : [];
+        const body = (<CityList cities={displayList} handleSelect={handleSelect} manualMove={manualMove} showAll={showAll}/>);
 
         return (
             <div className="list-manager">
                 <div className="list-title">{title}</div>
-                <input type="text" placeholder="Search" value={searchText} name={`search-${title}`} onChange={this.handleChange.bind(this)}/>
-                <label htmlFor={`search-${title}`} onClick={this.handleClear.bind(this)}>clear</label>
+                <div className="search-bar">
+                    <TextField
+                        type="text"
+                        hintText="Search"
+                        value={searchText}
+                        name={`search-${title}`}
+                        fullWidth={true}
+                        onChange={this.handleChange.bind(this)}/>
+                </div>
+                <label className="search-clear" htmlFor={`search-${title}`} onClick={this.handleClear.bind(this)}><i className="fa fa-window-close"/></label>
                 {body}
             </div>
         );

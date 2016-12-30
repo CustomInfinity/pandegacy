@@ -3,6 +3,7 @@ import _ from 'lodash';
 import {Row, Col} from 'react-bootstrap';
 import AppBar from 'material-ui/AppBar';
 import Paper from 'material-ui/Paper';
+import RaisedButton from 'material-ui/RaisedButton';
 import ListManager from './list-manager';
 
 import {cities} from '../../cities';
@@ -78,16 +79,6 @@ export default class CityTracker extends React.Component {
             discardCities
         } = this.state;
 
-        const redrawList = !_.isEmpty(redrawCities) ? (
-            <Col sm={3}>
-                <ListManager
-                    title="Redraw"
-                    showAll
-                    list={redrawCities}
-                    handleSelect={this.handleDraw.bind(this)}
-                />
-            </Col>
-        ) : null;
         return (
             <div>
                 <AppBar title="Pandegacy"/>
@@ -102,8 +93,15 @@ export default class CityTracker extends React.Component {
                                         handleSelect={this.handleDraw.bind(this)}
                                     />
                                 </Col>
-                                {redrawList}
-                                <Col sm={3} smOffset={redrawList ? 0 : 3}>
+                                <Col sm={3}>
+                                    <ListManager
+                                        title="Redraw"
+                                        showAll
+                                        list={redrawCities}
+                                        handleSelect={this.handleDraw.bind(this)}
+                                    />
+                                </Col>
+                                <Col sm={3}>
                                     <ListManager
                                         title="Discard"
                                         showAll
@@ -112,8 +110,20 @@ export default class CityTracker extends React.Component {
                                     />
                                 </Col>
                                 <Col sm={3}>
-                                    <div onClick={this.handleRedraw.bind(this)}>EPIDEMIC!</div>
-                                    <div onClick={this.reset.bind(this)}>RESET</div>
+                                    <div className="actions">
+                                        <RaisedButton
+                                            label="Epidemic"
+                                            primary={true}
+                                            onClick={this.handleRedraw.bind(this)}
+                                            icon={<i className="fa fa-exclamation-triangle"/>}
+                                        />
+                                        <RaisedButton
+                                            label="Reset"
+                                            secondary={true}
+                                            onClick={this.reset.bind(this)}
+                                            icon={<i className="fa fa-power-off"/>}
+                                        />
+                                    </div>
                                 </Col>
                             </Row>
                         </div>
