@@ -1,8 +1,8 @@
 {
   "name": "pandegacy",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
-  "homepage": "https://CustomInfinity.github.io/pandegacy",
+  "homepage": "https://custominfinity.github.io/pandegacy",
   "devDependencies": {
     "gh-pages": "^0.12.0",
     "react-scripts": "0.8.4"
